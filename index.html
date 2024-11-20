@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Naslouchání</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .question { margin: 10px 0; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Test Naslouchání</h1>
+    <form id="testForm">
+        <!-- Oddíl 1: Naslouchání orientované na obsah -->
+        <div class="question">
+            <h3>Oddíl 1 - Naslouchání orientované na obsah</h3>
+            <label>A) Rád/a se zapojuji do řešení složitých záležitostí: 
+                <input type="number" min="1" max="5" id="q1" required>
+            </label><br>
+            <label>B) Očekávám od druhých podložení jejich tvrzení věrohodnými argumenty: 
+                <input type="number" min="1" max="5" id="q2" required>
+            </label><br>
+            <label>C) Vyhledávám odborná stanoviska jiných: 
+                <input type="number" min="1" max="5" id="q3" required>
+            </label><br>
+            <label>D) Svůj vlastní názor si vytvářím až po získání dostatečného množství faktů: 
+                <input type="number" min="1" max="5" id="q4" required>
+            </label><br>
+            <label>E) Mé dotazy směřují k získání maximálního množství informací: 
+                <input type="number" min="1" max="5" id="q5" required>
+            </label><br>
+        </div>
+
+        <!-- Oddíl 2: Naslouchání orientované na lidi -->
+        <div class="question">
+            <h3>Oddíl 2 - Naslouchání orientované na lidi</h3>
+            <label>A) Snažím se udržovat oční kontakt a vyjadřovat tak svůj zájem o partnera: 
+                <input type="number" min="1" max="5" id="q6" required>
+            </label><br>
+            <label>B) Empaticky se vžívám do problémů druhého: 
+                <input type="number" min="1" max="5" id="q7" required>
+            </label><br>
+            <label>C) Zaměřuji se na pocity druhých lidí: 
+                <input type="number" min="1" max="5" id="q8" required>
+            </label><br>
+            <label>D) Hledám společné zájmy s druhými: 
+                <input type="number" min="1" max="5" id="q9" required>
+            </label><br>
+            <label>E) Při rozhovoru sleduji, jaká je nálada druhých lidí: 
+                <input type="number" min="1" max="5" id="q10" required>
+            </label><br>
+        </div>
+
+        <!-- Oddíl 3: Naslouchání orientované na čas -->
+        <div class="question">
+            <h3>Oddíl 3 - Naslouchání orientované na čas</h3>
+            <label>A) Od druhých vyžaduji stručnost ve sdělování informací: 
+                <input type="number" min="1" max="5" id="q11" required>
+            </label><br>
+            <label>B) Na počátku jednání dávám dotaz, kolik času nám to zabere: 
+                <input type="number" min="1" max="5" id="q12" required>
+            </label><br>
+            <label>C) V případě potřeby dám najevo, že nemám tolik času, kolik je vyžadováno: 
+                <input type="number" min="1" max="5" id="q13" required>
+            </label><br>
+            <label>D) V průběhu jednání si sleduji, jak dlouho spolu hovoříme: 
+                <input type="number" min="1" max="5" id="q14" required>
+            </label><br>
+            <label>E) Jsem rád/a, když se v rámci stanoveného času podaří daný problém vyřešit a není třeba se k němu napodruhé vracet: 
+                <input type="number" min="1" max="5" id="q15" required>
+            </label><br>
+        </div>
+
+        <!-- Oddíl 4: Naslouchání orientované na fakta a úkoly -->
+        <div class="question">
+            <h3>Oddíl 4 - Naslouchání orientované na fakta a úkoly</h3>
+            <label>A) Kladu otázky, které pomohou druhým k rychlejšímu řešení problému: 
+                <input type="number" min="1" max="5" id="q16" required>
+            </label><br>
+            <label>B) Při hovoru vnímám veškerá protiřečení: 
+                <input type="number" min="1" max="5" id="q17" required>
+            </label><br>
+            <label>C) Když druzí odbíhají od tématu, jsem velmi netrpělivý/á: 
+                <input type="number" min="1" max="5" id="q18" required>
+            </label><br>
+            <label>D) Očekávám od druhých, že se budou vyjadřovat jasně: 
+                <input type="number" min="1" max="5" id="q19" required>
+            </label><br>
+            <label>E) Stane se mi, že skáču druhým do řeči: 
+                <input type="number" min="1" max="5" id="q20" required>
+            </label><br>
+        </div>
+
+        <button type="submit">Vyhodnotit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        document.getElementById("testForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Získání hodnot odpovědí
+            let score = 0;
+            for (let i = 1; i <= 20; i++) {
+                score += parseInt(document.getElementById("q" + i).value);
+            }
+
+            // Vyhodnocení
+            let resultText = "Celkové skóre: " + score + "<br>";
+            if (score <= 50) {
+                resultText += "Preferujete naslouchání orientované na fakta a úkoly.";
+            } else if (score <= 70) {
+                resultText += "Preferujete naslouchání orientované na obsah.";
+            } else if (score <= 90) {
+                resultText += "Preferujete naslouchání orientované na lidi.";
+            } else {
+                resultText += "Preferujete naslouchání orientované na čas.";
+            }
+
+            document.getElementById("result").innerHTML = resultText;
+        });
+    </script>
+</body>
+</html>
